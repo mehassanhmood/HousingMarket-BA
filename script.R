@@ -112,11 +112,34 @@ head(merged_data)
 data_q_report(merged_data)
 
 
+###################### Statistical Analysis ##################################
+
+library(ggplot2)
+#install.packages('corrplot')
+library(corrplot)
+library(stats)
+
+
+summary_stats <-  merged_data %>%
+  select(Sales, Dollar_Volume, Average_Price, New_Listings, Average_SP_LP, Average_DOM) %>%
+  summary()
+
+print(summary_stats)
 
 
 
 
+# numeric_cols <- c("Sales", "Dollar_Volume", "Average_Price", "New_Listings", "Average_SP_LP", "Average_DOM")
+# for (col in numeric_cols) {
+#   ggplot(merged_data, aes(x = col)) + 
+#     geom_histogram(bins = 30, fill = "skyblue", color = "black") +
+#     ggtitle(paste("Distribution of", col)) +
+#     theme_minimal()
+# }
 
-
+ggplot(merged_data, aes(x = X_Year.x, y = Average_Price)) +
+  geom_col() +
+  labs(title = "Average Price over Time", x = "Year Quarter", y = "Average Price") +
+  theme_minimal()
 
 
