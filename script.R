@@ -101,11 +101,15 @@ for (data in names(data_list)) {
 
 
 
+head(home_prices)
 
+prices_recession <- merge(home_prices, recession_indicator, by = "Year_Quarter_Key")
 
+merged_data <- merge(prices_recession, rates, by = "Year_Quarter_Key")
 
+head(merged_data)
 
-
+data_q_report(merged_data)
 
 
 
