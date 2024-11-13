@@ -1,4 +1,5 @@
 library(dplyr)
+library(tidygeocoder)
 
 
 recession_indicator <- read.csv("./CanadaRecessionIndicator.csv")
@@ -81,6 +82,10 @@ selected_data <- merged_data %>%
 
 head(selected_data)
 
+final_data <- selected_data %>%
+  geocode(Municipality, method="osm", lat = latitude, long=longitude)
+
+head(final_data)
 ###################### Statistical Analysis ##################################
 
 library(ggplot2)
@@ -94,8 +99,6 @@ summary_stats <-  selected_data %>%
   summary()
 
 print(summary_stats)
-
-
 
 
 ggplot(merged_data, aes(x = X_Year.x, y = Average_Price)) +
