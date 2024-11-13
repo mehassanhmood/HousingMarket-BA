@@ -7,45 +7,8 @@ home_prices <- read.csv("./GTA_HomePrice_History.csv")
 primary_keys <- read.csv("./prim_key.csv")
 
 
-# head(primary_keys)
-# 
-# print(colnames(home_prices))
-# 
-# null_counts
-# 
-# 
-# count_nulls <- function (data) {
-#   if (!is.data.frame(data)) {
-#     stop("Input must be a data frame")
-#   }
-#   null_counts <- sapply(data, function(x) sum(is.na(x)))
-#   
-#   return(null_counts)
-# }
-# 
-# 
-# nulls_recession <-count_nulls((recession_indicator))
-# nulls_recession
-# 
-# nulls_home_prices <- count_nulls(home_prices)
-# nulls_home_prices
-# 
-# nulls_rates <- count_nulls(rates)
-# nulls_rates
-# 
-# nulls_primary <- count_nulls(primary_keys)
-# nulls_primary
-# 
-# 
-# 
-# 
-# duplicates_recession <- recession_indicator[duplicated(recession_indicator), ]
-# duplicates_recession
-# 
-# home_prices[duplicated(home_prices), ]
 
-
-
+################################## Exploratory Data Analysis and Data Processing ##############################
 
 # writing a function for the above mentioned code for reusability:
 
@@ -103,14 +66,20 @@ for (data in names(data_list)) {
 
 head(home_prices)
 
-prices_recession <- merge(home_prices, recession_indicator, by = "Year_Quarter_Key")
+prices_recession <- inner_join(home_prices, recession_indicator, by = "Year_Quarter_Key")
 
-merged_data <- merge(prices_recession, rates, by = "Year_Quarter_Key")
+merged_data <- inner_join(prices_recession, rates, by = "Year_Quarter_Key")
 
 head(merged_data)
 
 data_q_report(merged_data)
 
+
+# Selecting the specific columns:
+selected_data <- merged_data %>%
+  select(-1,-4,-12,-13,-14,-15,-16,-17,-18)
+
+head(selected_data)
 
 ###################### Statistical Analysis ##################################
 
@@ -120,22 +89,14 @@ library(corrplot)
 library(stats)
 
 
-summary_stats <-  merged_data %>%
-  select(Sales, Dollar_Volume, Average_Price, New_Listings, Average_SP_LP, Average_DOM) %>%
+summary_stats <-  selected_data %>%
+  select(Sales, Dollar_Volume, Average_Price, New_Listings) %>%
   summary()
 
 print(summary_stats)
 
 
 
-
-# numeric_cols <- c("Sales", "Dollar_Volume", "Average_Price", "New_Listings", "Average_SP_LP", "Average_DOM")
-# for (col in numeric_cols) {
-#   ggplot(merged_data, aes(x = col)) + 
-#     geom_histogram(bins = 30, fill = "skyblue", color = "black") +
-#     ggtitle(paste("Distribution of", col)) +
-#     theme_minimal()
-# }
 
 ggplot(merged_data, aes(x = X_Year.x, y = Average_Price)) +
   geom_col() +
