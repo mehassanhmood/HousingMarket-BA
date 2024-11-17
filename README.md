@@ -8,3 +8,20 @@ This stands for Average Sale Price to List Price ratio. It compares the sale pri
 
 **Average_DOM**:  
 This stands for Average Days on Market. It represents the average number of days that properties in the dataset remain listed for sale before being sold. A lower average DOM indicates a faster market where properties are selling quickly, while a higher average DOM suggests slower sales.
+
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://example.com/build-status)  
+
+## Table of Contents
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Configuration](#configuration)
+6. [Technologies](#technologies)
+7. [Contributing](#contributing)
+8. [License](#license)
+9. [Contact](#contact)
+
+---
