@@ -9,10 +9,8 @@
 3. [Installation](#installation)
 4. [Usage](#usage)
 5. [Configuration](#configuration)
-6. [Technologies](#technologies)
-7. [Contributing](#contributing)
-8. [License](#license)
-9. [Contact](#contact)
+6. [License](#license)
+
 
 ---
 ## Overview
