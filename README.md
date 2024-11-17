@@ -37,5 +37,19 @@ This stands for Average Days on Market. It represents the average number of days
 ## Installation
 
 ### Prerequisites
-1. **Software/Tools Required:** List dependencies, e.g., Node.js, Python.
-2. **System Requirements:** Minimum RAM, OS, or software versions.
+1. **Software/Tools Required:** R, R-Studio, R-Shiny.
+
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/username/repository.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd repository
+   ```
+## Usage
+
+## Configuration
+
+## License
