@@ -14,9 +14,21 @@
 
 ---
 ## Overview
-Provide a brief description of the project, its purpose, and who it’s for.  
-Example:  
-"This project is a modern web application that helps users manage tasks efficiently using AI-driven recommendations."
+
+This project focuses on the **GTA Housing Market Analysis** and is a final project for my **Master's in Business Analytics and AI**. The aim is to analyze and gain insights into the housing market trends in the Greater Toronto Area (GTA), utilizing historical data up until 2022. This analysis is particularly relevant in the current context of economic uncertainty, where fluctuations in the housing market have been a significant concern.
+
+By leveraging data analysis techniques in R, the project seeks to explore potential changes in housing market trends over time. This includes identifying patterns, correlations, and anomalies that could shed light on the current state of the market. The project also aims to understand the broader economic implications of these trends and how they might inform predictions for the future.
+
+Despite the data only going up to 2022, the analysis is timely due to ongoing shifts in the economy, such as inflation, interest rate changes, and post-pandemic recovery. By comparing past trends with current market conditions (as of 2024), I aim to explore whether the market has shifted or if the factors influencing the housing market have remained constant.
+
+---
+
+### Key Objectives:
+- **Explore** and analyze historical housing market data in the GTA.
+- **Identify trends** in property prices, demand, and supply over time.
+- **Evaluate economic factors** (e.g., interest rates, inflation) that might have influenced housing market dynamics.
+- **Predict potential market shifts** based on historical data trends and current economic factors.
+
 
 ---
 
