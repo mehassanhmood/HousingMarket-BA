@@ -2,6 +2,8 @@ library(dplyr)
 library(tidygeocoder)
 
 
+################### 1. Importing Data ####################
+
 recession_indicator <- read.csv("./CanadaRecessionIndicator.csv")
 rates <-read.csv("./clean_rates.csv")
 home_prices <- read.csv("./GTA_HomePrice_History.csv")
@@ -9,9 +11,11 @@ primary_keys <- read.csv("./prim_key.csv")
 
 
 
-################################## Exploratory Data Analysis and Data Processing ##############################
+###################### Exploratory Data Analysis and Data Processing ############################
 
-# writing a function for the above mentioned code for reusability:
+# Missing Values
+# Duplicates
+# Number of rows and columns
 
 
 
@@ -86,7 +90,31 @@ final_data <- selected_data %>%
   geocode(Municipality, method="osm", lat = latitude, long=longitude)
 
 head(final_data)
-###################### Statistical Analysis ##################################
+
+
+######### 2. Exploratory Data Analysis ###################
+# summary
+# Univaritae analysis: Distribution of individual features
+# Bivariate Analysis: Relationships between variables
+# Geospatial Analysis : ggmap & sf
+# Trends over time.
+
+
+
+############## 3. Feature Engineering ######################
+# Categorical Conversion of qualitative factors: factor()
+# Normalizing or Scaling the features
+
+
+
+############## 4. Statistical Analysis ##########################
+# Correlation Analysis
+# Hypothesis Testing: If required
+# Variance Inflation Facotr: Checking for multi-collinearity.
+
+
+
+
 
 library(ggplot2)
 #install.packages('corrplot')
@@ -106,4 +134,11 @@ ggplot(merged_data, aes(x = X_Year.x, y = Average_Price)) +
   labs(title = "Average Price over Time", x = "Year Quarter", y = "Average Price") +
   theme_minimal()
 
+################# 5. Regression Modelling ##########
+# splitting data
+# model selection
+# triaining or fitting the model
+# evaluating the model
+# model improvements
+# Results Interpretation
 
