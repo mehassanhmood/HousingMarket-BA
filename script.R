@@ -167,6 +167,7 @@ ggplot(merged_data, aes(x = X_Year.x, y = Average_Price)) +
 
 ## Data Peocessing:
 library(caret)
+library(leaflet)
 head(final_data)
 
 value_counts <- table(final_data$Municipality)
@@ -197,6 +198,30 @@ summary(lm_model)
 # model improvements
 # Results Interpretation
 
-head(final_data)
+head(final_prepped)
+
+# Group by Municipality and calculate the mean of Average_Price
+municipality_data <- final_prepped %>%
+  group_by_at(vars(starts_with("Municipality"))) %>%
+  summarise(mean_price = mean(Average_Price, na.rm = TRUE), 
+            latitude = mean(latitude, na.rm = TRUE), 
+            longitude = mean(longitude, na.rm = TRUE)) %>%
+  filter(!is.na(latitude) & !is.na(longitude))
 
 
+
+# Create a leaflet map
+leaflet(municipality_data) %>%
+  addTiles() %>%  # Default OpenStreetMap tiles
+  addCircleMarkers(
+    lng = ~longitude, lat = ~latitude, 
+    color = ~colorNumeric("YlOrRd", mean_price)(mean_price),
+    radius = 6, opacity = 0.7, fillOpacity = 0.7, 
+    #popup = ~paste("Municipality:", Municipality, "<br>Mean Price:", mean_price)
+  ) %>%
+  addLegend(
+    position = "bottomright",
+    pal = colorNumeric("YlOrRd", municipality_data$mean_price),
+    values = ~mean_price,
+    title = "Mean Average Price"
+  )
