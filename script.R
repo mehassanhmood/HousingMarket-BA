@@ -203,25 +203,25 @@ head(final_prepped)
 # Group by Municipality and calculate the mean of Average_Price
 municipality_data <- final_prepped %>%
   group_by_at(vars(starts_with("Municipality"))) %>%
-  summarise(mean_price = mean(Average_Price, na.rm = TRUE), 
-            latitude = mean(latitude, na.rm = TRUE), 
-            longitude = mean(longitude, na.rm = TRUE)) %>%
+  summarise(mean_price = mean(Average_Price, na.rm = TRUE),
+            latitude = first(latitude),  # Keep the first latitude (no aggregation)
+            longitude = first(longitude)) %>%
   filter(!is.na(latitude) & !is.na(longitude))
-
-
 
 # Create a leaflet map
 leaflet(municipality_data) %>%
-  addTiles() %>%  # Default OpenStreetMap tiles
+  addTiles() %>%  # Add the default OpenStreetMap tiles
   addCircleMarkers(
-    lng = ~longitude, lat = ~latitude, 
-    color = ~colorNumeric("YlOrRd", mean_price)(mean_price),
-    radius = 6, opacity = 0.7, fillOpacity = 0.7, 
-    #popup = ~paste("Municipality:", Municipality, "<br>Mean Price:", mean_price)
+    ~longitude, ~latitude,  # Longitude and Latitude
+    color = ~colorNumeric("RdYlBu", mean_price)(mean_price),  # Apply a color gradient based on mean_price
+    radius = 10,  # Size of the marker
+    stroke = FALSE,  # Remove the border of the circle
+    fillOpacity = 0.7,  # Adjust transparency
+    popup = ~paste0("Municipality: ", names(municipality_data)[startsWith(names(municipality_data), "Municipality")], 
+                    "<br>Mean Price: ", round(mean_price, 2))  # Display mean price and municipality name
   ) %>%
   addLegend(
-    position = "bottomright",
-    pal = colorNumeric("YlOrRd", municipality_data$mean_price),
-    values = ~mean_price,
-    title = "Mean Average Price"
+    "bottomright", pal = colorNumeric("RdYlBu", municipality_data$mean_price), values = municipality_data$mean_price,
+    title = "Mean Price",
+    opacity = 1
   )
