@@ -179,10 +179,16 @@ encoded_categorical <- as.data.frame(predict(dummy_vars, newdata = final_data))
 final_prepped <- cbind(final_numeric, encoded_categorical)
 head(final_prepped)
 
+colnames(final_prepped)
 
 
+colnames(final_prepped) <- make.names(colnames(final_prepped))
+independent_columns <- colnames(final_prepped)[!colnames(final_prepped) %in% c("Average_Price")]
+formula <- as.formula(paste("Average_Price ~", paste(independent_columns, collapse = " + ")))
+lm_model <- lm(formula, data = final_prepped)
 
-
+# Summary of the model
+summary(lm_model)
 
 # splitting data
 # model selection
