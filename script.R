@@ -163,10 +163,34 @@ ggplot(merged_data, aes(x = X_Year.x, y = Average_Price)) +
   theme_minimal()
 
 ################# 5. Regression Modelling ##########
+
+
+## Data Peocessing:
+library(caret)
+head(final_data)
+
+value_counts <- table(final_data$Municipality)
+value_counts
+
+final_numeric <- select(final_data, where(is.numeric))
+head(final_numeric)
+dummy_vars <- dummyVars(~ Area + Municipality, data = final_data)
+encoded_categorical <- as.data.frame(predict(dummy_vars, newdata = final_data))
+final_prepped <- cbind(final_numeric, encoded_categorical)
+head(final_prepped)
+
+
+
+
+
+
 # splitting data
 # model selection
 # triaining or fitting the model
 # evaluating the model
 # model improvements
 # Results Interpretation
+
+head(final_data)
+
 
